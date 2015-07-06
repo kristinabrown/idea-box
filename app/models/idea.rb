@@ -4,4 +4,6 @@ class Idea < ActiveRecord::Base
   validates :body, presence: true
   validates :quality, presence: true, 
                       inclusion: { in: [0, 1, 2]}
+                      
+  default_scope { order(created_at: :desc) }
 end
