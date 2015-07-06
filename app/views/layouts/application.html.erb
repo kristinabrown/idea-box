@@ -9,7 +9,9 @@
           
 </head>
 <body>
-
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :class => "flash-#{name}" %>
+  <% end %>
 <%= yield %>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
