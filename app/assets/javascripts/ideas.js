@@ -22,6 +22,8 @@ $(document).ready(function(){
                   "</h6></div></div> </div></div>");
       
       document.getElementById("main-button").disabled = false;
+      $(".title").val("");
+      $(".body").val("");
     });
   });
 });
