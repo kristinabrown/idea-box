@@ -15,6 +15,17 @@ class IdeasController < ApplicationController
   end
   
   def update
+    @idea = Idea.find(params["id"])
+    if @idea.update(idea_params)
+      flash[:success] = "Your idea has been updated!"
+      redirect_to ideas_path
+    else
+      flash[:error] = @idea.errors.full_messages.joing(", ")
+    end
+  end
+  
+  def edit
+    @idea = Idea.find(params["id"])    
   end
   
   def destroy
@@ -38,5 +49,11 @@ class IdeasController < ApplicationController
     
     @idea.update_attribute(:quality, new_quality)
     respond_with @idea, status: 201, location: ideas_path
+  end
+  
+  private
+  
+  def idea_params
+    params.require(:idea).permit(:title, :body)
   end
 end
