@@ -17,6 +17,13 @@ class IdeasController < ApplicationController
   def update
   end
   
+  def destroy
+    @idea = Idea.find(params["id"].to_i)
+    @idea.destroy
+    
+    respond_with "", status: 201, location: ideas_path
+  end
+  
   def up
     @idea = Idea.find(params["id"].to_i)
     new_quality = @idea.up_quality
