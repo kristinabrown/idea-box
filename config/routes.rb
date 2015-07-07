@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'ideas#index'
   
   resources :ideas
+  
+  post '/up', to: 'ideas#up'
+  post '/down', to: 'ideas#down'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
