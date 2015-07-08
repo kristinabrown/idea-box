@@ -96,7 +96,6 @@ function up() {
   var all = $(this).parent().parent().text();
   var div = $(this).parent().parent().parent().parent().parent();
   var ideaId = all.trim().slice(0, 2).trim();
-  var $ideasDiv = $("#ideas");
   
 
   $.post("/up", { id: ideaId }).then(function(idea){
