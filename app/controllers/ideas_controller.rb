@@ -20,7 +20,8 @@ class IdeasController < ApplicationController
       flash[:success] = "Your idea has been updated!"
       redirect_to ideas_path
     else
-      flash[:error] = @idea.errors.full_messages.joing(", ")
+      flash[:error] = @idea.errors.full_messages.join(", ")
+      redirect_to ideas_path
     end
   end
   
