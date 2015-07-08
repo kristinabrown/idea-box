@@ -3,7 +3,7 @@ class Idea < ActiveRecord::Base
                     uniqueness: true
   validates :body, presence: true
                       
-  default_scope { order(created_at: :desc) }
+  default_scope { order(updated_at: :desc) }
   
   enum quality: { swill: 0, plausible: 1, genius: 2 }
   
