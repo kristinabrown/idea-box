@@ -53,14 +53,14 @@ $(document).ready(function(){
 //helper functions
 
 function createCard(idea) {
-  return "<div class='col s10 offset-s1'>" +
+  return "<div class='row'><div class='col s10 offset-s1'>" +
          "<div class='col s12 m10'> <div class='card blue-grey darken-1 z-depth-3 display-cards hoverable'>" +
          "<div class='hidden'>" + idea.id + "</div> <div class='card-content white-text'> <div class='card-image'>" +
          "<img src='/assets/idea.png' alt='light bulb'><span class='card-title'> <h4>" + idea.title + "</h4></span> </div>" +
          "<p>" + idea.body + "</p> </div> <div class='card-action card-foot blue-text text-darken-4'>" +
          "<h4 class='red-text text-lighten-2'>" + idea.quality + "</h4> <button class='up'><i class='fa fa-thumbs-o-up'>" + 
          "</i></button> <button class='down'> <i class='fa fa-thumbs-o-down'></i> </button>" +
-         "<a class='delete right' href='#'>Delete</a> <a class='right' href='/ideas/" + idea.id + "/edit'>Edit</a> </div> </div> </div> </div>"
+         "<a class='delete right' href='#'>Delete</a> <a class='right' href='/ideas/" + idea.id + "/edit'>Edit</a> </div> </div> </div> </div> </div>"
 }
 
 function deleteIdea() {
@@ -97,7 +97,6 @@ function up() {
   var div = $(this).parent().parent().parent().parent().parent();
   var ideaId = all.trim().slice(0, 2).trim();
   
-
   $.post("/up", { id: ideaId }).then(function(idea){
     div.html(createCard(idea));
     $(".delete").on("click", deleteIdea);
