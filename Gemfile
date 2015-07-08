@@ -45,6 +45,10 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'teaspoon-mocha'
+  gem 'konacha'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

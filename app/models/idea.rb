@@ -8,22 +8,20 @@ class Idea < ActiveRecord::Base
   enum quality: { swill: 0, plausible: 1, genius: 2 }
   
   def up_quality
-    if swill?
-      1
-    elsif plausible?
-      2
-    else
-      quality
-    end
+    genius? ? quality : up
   end
   
   def down_quality
-    if plausible?
-      0
-    elsif genius?
-      1
-    else
-      quality
-    end
+    swill? ? quality : down
+  end
+  
+  private
+  
+  def down
+    plausible? ? 0 : 1
+  end
+  
+  def up
+    swill? ? 1 : 2
   end
 end
