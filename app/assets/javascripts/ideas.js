@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
   var $ideasDiv = $("#ideas");
   
   $(".button").click(function(event){
@@ -10,14 +9,14 @@ $(document).ready(function(){
     var body = $(".body").val();
 
     $.post("/ideas", { title: title, body: body }).then(function(idea){
-    $ideasDiv.prepend(createCard(idea));
+      $ideasDiv.prepend(createCard(idea));
       
       document.getElementById("main-button").disabled = false;
       $(".title").val("");
       $(".body").val("");
-      $(".up").on("click", up);
-      $(".down").on("click", down);
       $(".delete").on("click", deleteIdea);
+      $(".down").on("click", down);
+      $(".up").on("click", up);
     }).fail(function() {
         alert('Not a good idea, try again!')
         document.getElementById("main-button").disabled = false;
@@ -29,6 +28,25 @@ $(document).ready(function(){
   $(".down").on("click", down);
   
   $(".delete").on("click", deleteIdea);
+  
+  $(".search").keyup(function(){
+    var text = $(this).val();
+
+    $ideasDiv.children().each(function(){
+      if ($(this).text().search(new RegExp(text, "i")) === -1) {
+        $(this).addClass("hidden")
+        $(".delete").on("click", deleteIdea);
+        $(".down").on("click", down);
+        $(".up").on("click", up);
+      }
+        else {
+          $(this).removeClass("hidden")
+          $(".delete").on("click", deleteIdea);
+          $(".down").on("click", down);
+          $(".up").on("click", up);
+        }
+    })
+  });
   
 });
 
@@ -78,6 +96,8 @@ function up() {
   var all = $(this).parent().parent().text();
   var div = $(this).parent().parent().parent().parent().parent();
   var ideaId = all.trim().slice(0, 2).trim();
+  var $ideasDiv = $("#ideas");
+  
 
   $.post("/up", { id: ideaId }).then(function(idea){
     div.html(createCard(idea));
