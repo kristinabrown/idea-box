@@ -13,6 +13,16 @@ describe('idea functions', function() {
     };
     assert.ok(createCard(idea), "createCard is a function");
   });
+  
+  it("createCard2 is a fucntion", function() {
+    var idea = { 
+      id: 0, 
+      title: "title",
+      body: "body",
+      quality: 0
+    };
+    assert.ok(createCard2(idea), "createCard is a function");
+  });
     
 });
 
